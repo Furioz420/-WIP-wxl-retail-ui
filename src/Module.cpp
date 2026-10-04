@@ -23,6 +23,21 @@ int __cdecl WXL_Load(const WXL_Api* api)
         api->Log(WXL_LOG_ERROR, "wxl-retail-ui", "required wxl.framescript v1 is unavailable");
         return 0;
     }
+    if (!wxl_retail_ui::Network())
+    {
+        api->Log(WXL_LOG_ERROR, "wxl-retail-ui", "required wxl.network v1 is unavailable");
+        return 0;
+    }
 
-    return wxl_retail_ui::InstallRetailUiCompatibility() ? 1 : 0;
+    bool ok = wxl_retail_ui::InstallRetailUiCompatibility();
+    ok &= wxl_retail_ui::InstallRetailTransmog();
+    ok &= wxl_retail_ui::InstallRetailTransmogEquipment();
+    ok &= wxl_retail_ui::InstallRetailTransmogApply();
+    ok &= wxl_retail_ui::InstallRetailTransmogOutfits();
+    ok &= wxl_retail_ui::InstallRetailTransmogCustomSets();
+    ok &= wxl_retail_ui::InstallRetailTransmogSituations();
+    ok &= wxl_retail_ui::InstallRetailTransmogPreview();
+    if (wxl_retail_ui::ConfigBool("WXL_WEEKLY_REWARDS", true))
+        ok &= wxl_retail_ui::InstallWeeklyRewards();
+    return ok ? 1 : 0;
 }

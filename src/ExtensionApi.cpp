@@ -4,4 +4,6 @@ namespace wxl_retail_ui
 {
     const WXL_Api* g_api = nullptr;
     const WXL_FrameScriptApi* g_framescript = nullptr;
+    const WXL_NetworkApi* g_network = nullptr;
+    const WXL_FdidApi* g_fdid = nullptr;
 }
