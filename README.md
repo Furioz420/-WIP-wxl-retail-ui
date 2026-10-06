@@ -1,5 +1,7 @@
 # wxl-retail-ui
 
+[Build compatibility and release gate](BUILDING.md)
+
 Experimental WarcraftXL ABI 1.1 compatibility foundation for backported retail interface modules.
 
 This review branch contains only the reusable UI compatibility layer. It fills APIs that are absent
